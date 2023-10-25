@@ -10,9 +10,14 @@ from datetime import datetime
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-connection_string = 'mongodb://test:sparta@ac-kfprgpg-shard-00-00.dqowppk.mongodb.net:27017,ac-kfprgpg-shard-00-01.dqowppk.mongodb.net:27017,ac-kfprgpg-shard-00-02.dqowppk.mongodb.net:27017/?ssl=true&replicaSet=atlas-tp9xrx-shard-0&authSource=admin&retryWrites=true&w=majority'
-client = MongoClient (connection_string)
-db = client.cluster0 
+
+
+MONGODB_URI = os.environ.get("MONGODB_URI")
+DB_NAME =  os.environ.get("DB_NAME")
+
+client = MongoClient(MONGODB_URI)
+db = client[DB_NAME]
+
 app = Flask (__name__) 
 
 @app.route ('/')
