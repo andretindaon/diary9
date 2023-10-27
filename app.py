@@ -11,7 +11,6 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 
-
 MONGODB_URI = os.environ.get("MONGODB_URI")
 DB_NAME =  os.environ.get("DB_NAME")
 
@@ -57,12 +56,15 @@ def save_diary ():
     profilename = f'profile-{mytime}.{extension}'
     save_to =f'static/{profilename}'
     profile.save(save_to)
+
+    time = today.strftime('%Y.%m.%d')
     
     doc = {
         'file' : filename,
         'profile' : profilename,
         'title' : title_receive,
-        'content' : content_receive
+        'content' : content_receive,
+        'time' : time,
     }  
     db.diary.insert_one(doc)    
     return jsonify({'message' : 'the memory has kept in the diary'})

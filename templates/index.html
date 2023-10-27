@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta property="og:title" content="My Diary" />
-    <meta property="og:description" content="Website contains my sweet memories." />
+    <meta property="og:description" content="Website contains my sweet." />
     <meta property="og:image" content="{{ url_for('static', filename='ogimage.jpg') }}"/>
     
     <!-- Bootstrap CSS -->
@@ -96,6 +96,7 @@
                             let title = articles[i]['title'];
                             let content = articles[i]['content'];
                             let file = articles[i]['file'];
+                            let time = articles[i]['time'] || '????.??.??';
                             let profile = articles[i]['profile'];
                             let temp_html = `
                     <div class="col-4">
@@ -105,7 +106,7 @@
                         <img src="../static/${profile}" class="card-img-bottom" alt="...">
                         <h5 class="card-title">${title}</h5>
                         <p class="card-text">${content}</p>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">${time}</h6>
                     </div>
                 </div>
             </div>
